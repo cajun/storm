@@ -1,8 +1,6 @@
 describe 'users'
   before
     user = new storm.model.User( json_fixture('user') )
-    mock_request().and_return('{ id: 100, username: "Bob" }', 'application/json', 200, { Accept: 'users' })
-    
   end
 
   after
@@ -26,6 +24,7 @@ describe 'users'
   end
 
   it 'should be able to register users successfully'
+    mock_request().and_return( '{ id: 100, username: "Bob" }' )
     result = storm.model.User.register( 'Bob', 123, 123 )
     
     result.username.should.be 'Bob'

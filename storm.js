@@ -29,6 +29,7 @@ include('frameworks/raphael/raphael.js');
 
 // data
 include('frameworks/uki/uki-data/model.js');
+include('frameworks/uki/uki-data/ajax.js');
 include('storm/layout/main.js');
 include('storm/controller/main.js');
 include('storm/layout/dashboard.js');
