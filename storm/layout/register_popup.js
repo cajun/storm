@@ -6,11 +6,10 @@ storm.layout.register_popup = function() {
           shadow:'theme(shadow-big)', id: 'register_popup', 
           relativeTo: uki('#register')[0], childViews: [
             { view: 'Label', rect: '10 10 100 22', anchors:'top left', text: 'Registeration' },
-            { view: 'TextField', rect: '10 32 130 22', anchors:'top left right', placeholder: 'username' },
-            { view: 'PasswordTextField', rect: '10 64 130 22', anchors:'top left right', placeholder: 'password' },
-            { view: 'PasswordTextField', rect: '10 96 130 22', anchors:'top left right', placeholder: 'password confirmation' },
-            { view: 'Button', rect: '25 128 100 22', anchors:'top left width', text: 'Create' }
-
+            { view: 'TextField', rect: '10 32 130 22', anchors:'top left right', placeholder: 'username', id: 'username' },
+            { view: 'PasswordTextField', rect: '10 64 130 22', anchors:'top left right', placeholder: 'password', id: 'password' },
+            { view: 'PasswordTextField', rect: '10 96 130 22', anchors:'top left right', placeholder: 'password confirmation', id: 'password_confirmation' },
+            { view: 'Button', rect: '25 128 100 22', anchors:'top left width', text: 'Create User' , id: 'register_user' }
         ]}
     );
 }

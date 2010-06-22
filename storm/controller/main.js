@@ -55,6 +55,10 @@ storm.controller.main = function() {
   });
 
   uki('Button[text=Fight]').click( function(){
+    alert('Not Ready to fight');
+  });
+
+  uki('Button[text=Logout]').click( function(){
     //hideAllChildren();
     login.visible(true);
     context.layout();

@@ -14,7 +14,7 @@ storm.layout.team = function() {
                 { view: 'PasswordTextField', rect: '10 57 202 22', anchors:'top left right', placeholder: 'Team Password' },
                 { view: 'PasswordTextField', rect: '10 82 202 22', anchors:'top left right', placeholder: 'Team Password Confirmation' },
                 { view: 'Button', rect: '10 107 202 22', anchors: 'top left right', id: 'team_submit', text: 'Create Team' },
-                { view: 'ScrollPane', rect: '60 132 152 100', anchors:'top left right bottom', 
+                { view: 'ScrollPane', rect: '10 132 202 100', anchors:'top left right bottom', 
                   childViews:[
                     { view: 'List', rect: '152 100', anchors: 'top left right bottom' }
                   ]}
@@ -37,7 +37,7 @@ storm.layout.team = function() {
               childViews:[
                 {view: 'Label', rect: '320 0 200 22', anchors:'top left',text: 'Team Details' },
                 {view: 'Label', rect: '0 32 200 22', anchors:'top left',text: 'Members' },
-                { view: 'Table', rect: '0 57 930 200', anchors: 'top left right',
+                { view: 'Table', rect: '0 10 930 200', anchors: 'top left right',
                   columns:[
                     { view: 'table.NumberColumn', label: 'Address', width: 80 },
                     { view: 'table.CustomColumn', label: 'Name', width: 260 },

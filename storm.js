@@ -40,6 +40,7 @@ include('storm/layout/login.js');
 include('storm/controller/login.js');
 include('storm/layout/register_popup.js');
 include('storm/model/user.js');
+include('storm/layout/message.js');
 
 
 uki.theme.airport.imagePath = 'i/';
@@ -51,3 +52,12 @@ storm.controller.main();
 storm.controller.login();
 
 })();
+
+Function.prototype.bind = function( obj ){
+  var method = this;
+  temp = function(){
+    return method.apply(obj, arguments );
+  };
+
+  return temp;
+};
