@@ -39,8 +39,9 @@ include('storm/layout/fight.js');
 include('storm/layout/login.js');
 include('storm/controller/login.js');
 include('storm/layout/register_popup.js');
-include('storm/model/user.js');
 include('storm/layout/message.js');
+include('storm/model/user.js');
+include('storm/model/team.js');
 
 
 uki.theme.airport.imagePath = 'i/';
