@@ -1,1 +1,1 @@
-{ id: 1, name: 'The Geeks', color: 'green' }
+{ id: 1, alias: 'The Geeks', color: 'green' }

@@ -11,8 +11,8 @@ describe 'teams'
     team.id().should.equal 1
   end
 
-  it 'should have a name'
-    team.name.should.equal 'The Geeks'
+  it 'should have a alias'
+    team.alias().should.equal 'The Geeks'
   end
 
   it 'should NOT have a password'
@@ -24,11 +24,11 @@ describe 'teams'
   end
 
   it 'should be able to register teams successfully'
-    mock_request().and_return( '{ id: 100, name: "Blackjacks", color: "white" }' )
+    mock_request().and_return( '{ id: 100, alias: "Blackjacks", color: "white" }' )
     result = storm.model.Team.register( 'Blackjacks', 'white', 123, 123 )
     
-    result.name.should.be 'Blackjacks'
-    result.color.should.be 'white'
+    result.alias().should.be 'Blackjacks'
+    result.color().should.be 'white'
   end
 
   it 'should be able to recieve an alert when there is an error during registeration'
@@ -40,12 +40,12 @@ describe 'teams'
     team.should.respond_to 'save'
   end
 
-  it 'should be able to be updated users successfully'
-    mock_request().and_return( '{ id: 1, name: "Jason Lee" }' )
-    team.name = 'Jason Lee'
+  it 'should be able to be updated team successfully'
+    mock_request().and_return( '{ id: 1, alias: "Jason Lee" }' )
+    team.alias( 'Jason Lee' )
 
     team.save()
-    team.name.should.equal( 'Jason Lee' )
+    team.alias().should.equal( 'Jason Lee' )
   end
 
   it 'should be able to recieve an alert when there is an error during registeration'

@@ -1,12 +1,12 @@
 include('../model.js');
 
 storm.model.Team = uki.newClass(uki.data.Model, function(Base) {
-  uki.data.model.addFields( this, [ 'id', 'name', 'color' ] );
+  uki.data.model.addFields( this, [ 'id', 'alias', 'color' ] );
 
   this.payload = function(){
     return {
       id: this._id,
-      name: this._name,
+      alias: this._alias,
       color: this._color
     }
   };
@@ -17,18 +17,18 @@ storm.model.Team = uki.newClass(uki.data.Model, function(Base) {
         payload: this.payload, 
         success_callback: function(response ){
           var json = eval( '(' + response + ')' );
-          this.name( json.name );
+          this.alias( json.alias );
           this.color( json.color );
         }.bind(this)
     });
   };
 });
 
-storm.model.Team.register = function( team, color, password, password_confirmation) {
+storm.model.Team.register = function( alias, color, password, password_confirmation) {
   var team = new storm.model.Team();
   
   var payload = { 
-    'name': name, 
+    'alias': alias, 
     'color': color,
     'password':password, 
     'password_confirmation': password_confirmation
@@ -39,12 +39,13 @@ storm.model.Team.register = function( team, color, password, password_confirmati
       payload: payload, 
       success_callback: function( response ){
         var json = eval( '(' + response + ')' );
-        team.id = team.id;
-        team.name = json.name;
-        team.color = json.color;
+        team.id( team.id );
+        team.alias( json.alias );
+        team.color( json.color );
       }
   });
 
   return team;
 };
+
 
