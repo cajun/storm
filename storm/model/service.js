@@ -3,19 +3,28 @@ include('../model.js');
 storm.model.Service = uki.newClass(uki.data.Model, function(Base) {
   uki.data.model.addFields( this, [ 'id', 'alias', 'port', 'server_id' ] );
 
+  // Converting this object into a standard payload for updating
   this.payload = function(){
     return {
       id: this._id,
       alias: this._alias,
-      port: this.port,
+      port: this._port,
       server_id: this._server_id
     }
   };
 
+  // This is the server related to this service
   this.server = function(){
-    // return the server here
+    try{
+      this._server = storm.model.Server.findByID( this._server_id );
+    }catch(e){
+      this._server = null;
+    }
+
+    return this._server;
   };
 
+  // Updating this record
   this.save = function(){
     storm.model.update_resource( {
         url: 'services',

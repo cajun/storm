@@ -49,4 +49,22 @@ describe 'servers'
     -{ server.save() }.should.throw_error '{ errors: [ { error: "foo" } ] }'
   end
 
+  it 'should respond to findByID'
+   storm.model.Server.should.respond_to 'findByID'
+  end
+
+  it 'should be able to find by an ID successfully'
+    mock_request().and_return( '{ id: 100, alias: "Chainsaw", address: "192.168.100.1" }' )
+    result = storm.model.Server.findByID( 100 )
+    
+    result.id().should.be 100
+    result.alias().should.be 'Chainsaw'
+    result.address().should.be "192.168.100.1"
+  end
+
+  it 'should be able to find by an ID and error out on failures'
+    mock_request().and_return('{ errors: [ { error: "foo" } ] }', 'text/plain', 500 )
+    -{ storm.model.Server.findByID( 123 ) }.should.throw_error '{ errors: [ { error: "foo" } ] }'
+  end
+
 end

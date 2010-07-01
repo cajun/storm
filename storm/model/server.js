@@ -30,6 +30,22 @@ storm.model.Server = uki.newClass(uki.data.Model, function(Base) {
   };
 });
 
+storm.model.Server.findByID = function( id ) {
+  var server = new storm.model.Server();
+
+  storm.model.get_resource({
+    url: 'server/' + id,
+    success_callback: function( response ){
+      var json = eval( '(' + response + ')' );
+      server.id( json.id );
+      server.alias( json.alias );
+      server.address( json.address );
+    }
+  });
+
+  return server;
+};
+
 storm.model.Server.register = function( alias, address ) {
   var server = new storm.model.Server();
   
@@ -43,7 +59,7 @@ storm.model.Server.register = function( alias, address ) {
       payload: payload, 
       success_callback: function( response ){
         var json = eval( '(' + response + ')' );
-        server.id( server.id );
+        server.id( json.id );
         server.alias( json.alias );
         server.address( json.address );
       }

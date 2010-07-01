@@ -50,4 +50,21 @@ describe 'services'
     -{ service.save() }.should.throw_error '{ errors: [ { error: "foo" } ] }'
   end
 
+  it 'should respond to server'
+   service.should.respond_to 'server'
+  end
+
+  it 'should be able to get its server successfully'
+    mock_request().and_return( '{ id: 100, alias: "Chainsaw", address: "192.168.100.1" }' )
+    result = service.server()
+    
+    result.id().should.be 100
+    result.alias().should.be 'Chainsaw'
+    result.address().should.be "192.168.100.1"
+  end
+
+  it 'should be able to get its server and return null if it does not have one'
+    mock_request().and_return('{ errors: [ { error: "foo" } ] }', 'text/plain', 500 )
+    service.server().should.be_null
+  end
 end
