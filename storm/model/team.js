@@ -22,6 +22,51 @@ storm.model.Team = uki.newClass(uki.data.Model, function(Base) {
         }.bind(this)
     });
   };
+
+  this.join = function(user, password ) { 
+
+    var payload = { 
+      'user_id': user.id, 
+      'password':password
+    };
+
+    var success = false;
+    try{
+      storm.model.create_resource({
+        url: 'teams/' + this.id + '/join',
+        payload: payload,
+        success_callback: function( response ){
+          success = true;
+        }
+      });
+    }catch(e){}
+
+    return success;
+  };
+
+
+  this.reject = function(user, password ) { 
+
+    var payload = { 
+      'user_id': user.id, 
+      'password':password
+    };
+
+    var success = false;
+    try{
+      storm.model.create_resource({
+        url: 'teams/' + this.id + '/reject',
+        payload: payload,
+        success_callback: function( response ){
+          success = true;
+        }
+      });
+    }catch(e){}
+
+    return success;
+  };
+
+
 });
 
 storm.model.Team.register = function( alias, color, password, password_confirmation) {
@@ -39,7 +84,7 @@ storm.model.Team.register = function( alias, color, password, password_confirmat
       payload: payload, 
       success_callback: function( response ){
         var json = eval( '(' + response + ')' );
-        team.id( team.id );
+        team.id( json.id );
         team.alias( json.alias );
         team.color( json.color );
       }

@@ -1,6 +1,7 @@
 describe 'teams'
   before
     team = new storm.model.Team( json_fixture('team') )
+    user = new storm.model.User( json_fixture('user') )
   end
 
   after
@@ -53,4 +54,31 @@ describe 'teams'
     -{ team.save() }.should.throw_error '{ errors: [ { error: "foo" } ] }'
   end
 
+  it 'should respond to join()'
+    team.should.respond_to 'join'
+  end
+
+  it 'should be able to register a user successfully'
+    mockRequest().and_return('true', 'text/plain')
+    team.join( user, 'foobar' ).should.be_true
+  end
+
+  it 'should be able to register a user and fail'
+    mockRequest().and_return('{ errors: [ { error: "foo" } ] }', 'text/plain', 500)
+    team.join( user, 'foobar' ).should.be_false
+  end
+
+  it 'should respond to reject()'
+    team.should.respond_to 'reject'
+  end
+
+  it 'should be able to reject a user successfully'
+    mockRequest().and_return('true', 'text/plain')
+    team.reject( user, 'foobar' ).should.be_true
+  end
+
+  it 'should be able to reject a user and fail'
+    mockRequest().and_return('{ errors: [ { error: "foo" } ] }', 'text/plain', 500)
+    team.reject( user, 'foobar' ).should.be_false
+  end
 end
