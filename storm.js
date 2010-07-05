@@ -44,6 +44,7 @@ include('storm/model/user.js');
 include('storm/model/team.js');
 include('storm/model/service.js');
 include('storm/model/server.js');
+include('storm/layout/container.js');
 
 
 uki.theme.airport.imagePath = 'i/';
@@ -51,7 +52,9 @@ uki.theme.airport.imagePath = 'i/';
 // skip interface creation if we're testing
 if (window.TESTING) return;
 
-storm.controller.main();
+// storm.layout.container().attachTo(window,1000,1000);
+
+//storm.controller.main();
 storm.controller.login();
 
 })();

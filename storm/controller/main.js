@@ -1,8 +1,7 @@
 include('../controller.js');
 
 storm.controller.main = function() {
-  // Setup var to play with
-  var context = storm.layout.main();    
+  var context = storm.layout.main();
 
   // Screens
   var dashboard = storm.layout.dashboard();
@@ -22,18 +21,15 @@ storm.controller.main = function() {
     fight
   ];
 
-  context.append(login);
-
   // Attach the screens to the main screen
   uki.map( screens, function( screen ){
       content.append(screen);
   });
 
-  if (!window.TESTING) context.attachTo(window,'1000 1000'); 
-
   hideAllChildren();
-  login.visible(true);
   dashboard.visible(true);
+
+  storm.layout.append(context);
 
   // Switching Layouts
   uki('Button[text^=Dash]').click( function(){
@@ -60,8 +56,7 @@ storm.controller.main = function() {
 
   uki('Button[text=Logout]').click( function(){
     //hideAllChildren();
-    login.visible(true);
-    context.layout();
+    storm.controller.login();
   });
 
   // Util function to change the screens

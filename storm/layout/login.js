@@ -11,6 +11,5 @@ storm.layout.login = function() {
             { view: 'Button', rect: '225 96 100 22', anchors: 'top right width', id: 'login', text: 'Login' }
           ]}
         ]}
-        
     );
 }

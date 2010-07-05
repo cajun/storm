@@ -1,9 +1,13 @@
 include('../controller.js');
 
 storm.controller.login = function() {
-  var context = uki('#login_screen');
+  // Setting up the view for this controller
+  var context = storm.layout.login();
   var register_popup = storm.layout.register_popup();
   var message = storm.layout.message();
+
+  // Add this context on the main layout
+  storm.layout.append(context);
 
   // login if the user is successful
   uki('#login').click( function(){
@@ -12,16 +16,10 @@ storm.controller.login = function() {
 
     if( storm.model.User.login( { username: username, password: password } ) ){
       // successful
-      uki('#login_username')[0].value('');
-      uki('#login_password')[0].value('');
-      context.visible(false);
+      storm.controller.main(); 
     } else {
       // failure
-      try{
-        show_message( 'You are not a valid user.  Please register first' );
-      }catch(e){
-        console.log(e);
-      }
+      show_message( 'You are not a valid user.  Please register first' );
     }
   });
   
