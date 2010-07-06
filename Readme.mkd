@@ -1,7 +1,13 @@
 
-# YourLib
+# Storm
 
-Description
+Storm is a complete javascript UI.  It is designed to act like a 
+desktop application.  It uses ajax for most of the commuinication,
+and web sockes for the 'real time' commuinication.  Storm exposes 
+a REST interface for the ajax request.  It has a built in Sinata 
+backend, that will be used mostly for testing.  Once the design of 
+Storm is complete a Rails backend will be used for replacement.
+
 
 ## License 
 

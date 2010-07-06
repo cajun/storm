@@ -6,8 +6,8 @@ storm.layout = {};
 // Once this is done you can add new elements to it
 // This will get call before you 'append' to the layout
 storm.layout.clear = function(view){
-  var el = document.getElementByID('container');
-  if( el.parentNode ){
+  var el = document.getElementById('container');
+  if(el && el.parentNode){
     el.parentNode.removeChild(el);
   }
 };

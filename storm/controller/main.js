@@ -27,7 +27,8 @@ storm.controller.main = function() {
   });
 
   hideAllChildren();
-  dashboard.visible(true);
+  //dashboard.visible(true);
+  team.visible(true);
 
   storm.layout.append(context);
 
